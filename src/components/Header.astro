@@ -1,23 +1,218 @@
-<header>
-	<h1>Art Gallery</h1>
-	<picture>
+<header class="header">
+	<h1 class="header__h1">Art Gallery</h1>
+	<div class="header__div"></div>
+	<picture class="header__picture">
 		<source
+			class="header__source"
 			srcset="/images/desktop/image-hero@2x.jpg"
 			media="(width >= 90em)"
 		/>
-		<source srcset="/images/tablet/image-hero@2x.jpg" media="(width >= 48em)" />
+		<source
+			class="header__source"
+			srcset="/images/tablet/image-hero@2x.jpg"
+			media="(width >= 48em)"
+		/>
 		<img
+			class="picture__img"
 			src="/images/mobile/image-hero@2x.jpg"
 			alt="Two people appreciating a drawing"
 		/>
 	</picture>
-	<section>
-		<h2>Modern Art Gallery</h2>
-		<p>
+	<section class="header__section">
+		<h2 class="section__h2" data-text-one="Modern" data-text-two="Art Gallery">
+			Modern Art Gallery
+		</h2>
+		<p class="section__p">
 			The arts in the collection of the Modern Art Gallery all started from a
 			spark of inspiration. Will these pieces inspire you? Visit us and find
 			out.
 		</p>
-		<a href="/location">Our location <span></span></a>
+		<a class="section__a" href="/location"
+			><span class="a__span a__span--text">Our location</span>
+			<span class="a__span a__span--icon"><span class="span__span"></span></span
+			></a
+		>
 	</section>
 </header>
+
+<style lang="scss">
+	@import "../scss/functions.scss";
+	@import "../scss/variables.scss";
+
+	.header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: em(32px);
+		width: 100%;
+		.header__h1 {
+			position: absolute;
+			left: -100%;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+		}
+
+		.header__div {
+			position: absolute;
+		}
+
+		.header__picture {
+			width: 100%;
+			height: 100%;
+			max-height: em(700px);
+		}
+
+		.header__section {
+			display: flex;
+			flex-direction: column;
+			gap: em(32px);
+			.section__h2 {
+				font-size: clamp(rem(60px), rem(50px) + 3vw, rem(93.2px));
+				line-height: 0.92;
+				text-transform: uppercase;
+			}
+
+			.section__p {
+				font-size: rem(18px);
+				line-height: 1.56;
+			}
+
+			.section__a {
+				display: inline-flex;
+				align-items: center;
+				justify-content: space-between;
+				width: 100%;
+				max-width: em(260px);
+				height: em(72px);
+				background-color: var(--background-primary);
+				text-transform: uppercase;
+				color: var(--primary-color);
+			}
+		}
+	}
+
+	.picture__img {
+		max-height: em(700px);
+		object-fit: cover;
+	}
+
+	.a__span {
+		display: inline-flex;
+		justify-content: center;
+	}
+
+	.a__span--text {
+		width: 113%;
+		font-size: rem(20px);
+		font-weight: 800;
+	}
+
+	.a__span--icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 31%;
+		height: 100%;
+		background-color: var(--background-secondary);
+		.span__span {
+			display: inline-block;
+			width: 100%;
+			height: em(30px);
+			background-image: url("/images/icon-arrow-right.svg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
+	}
+
+	@media screen and (width >= $breakpoint-tablets) {
+		.header {
+			flex-direction: row;
+			padding: 0 5%;
+			.header__section {
+				position: relative;
+				left: -2em;
+				gap: em(48px);
+				.section__h2 {
+					width: 109%;
+				}
+			}
+		}
+
+		.picture__img {
+			position: relative;
+			z-index: -10;
+			left: -12%;
+			width: 126%;
+		}
+	}
+
+	@media screen and (width >= $breakpoint-desktops) {
+		.header {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-areas: "black photo text";
+			padding: 0;
+
+			.header__div {
+				grid-area: black;
+				position: relative;
+				z-index: -10;
+				width: 100%;
+				height: 100%;
+				background-color: var(--background-primary);
+			}
+
+			.header__picture {
+				grid-area: photo;
+				max-height: em(800px);
+			}
+
+			.header__section {
+				grid-area: text;
+				top: - em(110px);
+				left: - em(14px);
+				gap: em(64px);
+				.section__h2 {
+					position: absolute;
+					left: -194.4%;
+					min-width: em(74.62px);
+					width: 117%;
+					max-width: em(74.62px);
+				}
+
+				.section__h2::before {
+					content: attr(data-text-one);
+					position: absolute;
+					top: 0;
+					width: 64%;
+					overflow: hidden;
+					color: white;
+					text-wrap: nowrap;
+				}
+
+				.section__h2::after {
+					content: attr(data-text-two);
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 63%;
+					overflow: hidden;
+					color: white;
+					text-wrap: nowrap;
+				}
+
+				.section__p {
+					font-size: rem(22px);
+				}
+			}
+		}
+
+		.picture__img {
+			width: 131.5%;
+			max-height: em(800px);
+			left: - em(60px);
+		}
+	}
+</style>
