@@ -131,10 +131,9 @@
 	@media screen and (width >= $breakpoint-tablets) {
 		.header {
 			flex-direction: row;
-			padding: 0 5%;
+			width: 91%;
 			.header__section {
 				position: relative;
-				left: -2em;
 				gap: em(48px);
 				.section__h2 {
 					width: 100%;
@@ -146,7 +145,7 @@
 			position: relative;
 			z-index: -10;
 			left: -12%;
-			width: 126%;
+			width: 137%;
 		}
 	}
 
@@ -155,8 +154,7 @@
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
 			grid-template-areas: "black photo text";
-			padding: 0;
-
+			width: 100%;
 			.header__div {
 				grid-area: black;
 				position: relative;
@@ -173,12 +171,12 @@
 
 			.header__section {
 				grid-area: text;
-				top: - em(110px);
-				left: - em(14px);
+				top: - em(80px);
+				left: - em(170px);
 				gap: em(64px);
 				.section__h2 {
 					position: absolute;
-					left: -194.4%;
+					left: -179.4%;
 					min-width: em(74.62px);
 					width: 117%;
 					max-width: em(74.62px);
@@ -208,13 +206,28 @@
 				.section__p {
 					font-size: rem(22px);
 				}
+
+				.section__a {
+					transition: background-color 0.2s ease-in-out;
+				}
+
+				.section__a:hover {
+					background-color: var(--background-secondary);
+					.a__span--icon {
+						transition: background-color 0.2s ease-in-out;
+					}
+					.a__span--icon {
+						background-color: var(--background-primary);
+					}
+				}
 			}
 		}
 
 		.picture__img {
 			width: 131.5%;
+			max-width: em(540px);
 			max-height: em(800px);
-			left: - em(60px);
+			left: - em(152px);
 		}
 	}
 </style>

@@ -15,19 +15,21 @@ const { isLocation } = Astro.props;
 	]}
 >
 	<div class="footer__div-container">
-		<p class="footer__p footer__p--title">
-			<span class="p__span">Modern</span>Art Gallery
-		</p>
-		<div class="div__container-description">
-			<p class="footer__p footer__p--description">
-				The Modern Art Gallery is free to all visitors and open seven days a
-				week from <time datetime="8:00">8am</time> to <time datetime="21:00"
-					>9pm</time
-				>. Find us at
+		<div class="div__container-text">
+			<p class="footer__p footer__p--title">
+				<span class="p__span">Modern</span>Art Gallery
 			</p>
-			<address class="container-description__address">
-				99 King Street, Newport, USA.
-			</address>
+			<div class="div__container-description">
+				<p class="footer__p footer__p--description">
+					The Modern Art Gallery is free to all visitors and open seven days a
+					week from <time datetime="8:00">8am</time> to <time datetime="21:00"
+						>9pm</time
+					>. Find us at
+				</p>
+				<address class="container-description__address">
+					99 King Street, Newport, USA.
+				</address>
+			</div>
 		</div>
 		<ul class="footer__ul">
 			<li class="ul__li">
@@ -63,17 +65,28 @@ const { isLocation } = Astro.props;
 			flex-direction: column;
 			gap: em(38px);
 			width: 91%;
-
+			.div__container-text {
+				display: flex;
+				flex-direction: column;
+				gap: em(38px);
+			}
 			.footer__p--title {
 				display: flex;
 				flex-direction: column;
+				font-family: "Big Shoulders Display", sans-serif;
 				font-size: rem(21px);
 				line-height: 0.92;
 				font-weight: 900;
 				text-transform: uppercase;
+				text-wrap: nowrap;
 			}
 
 			.footer__p--description {
+				font-size: rem(16px);
+				line-height: 1.63;
+			}
+
+			.container-description__address {
 				font-size: rem(16px);
 				line-height: 1.63;
 			}
@@ -133,10 +146,19 @@ const { isLocation } = Astro.props;
 		.footer {
 			padding: em(56px) 0;
 			.footer__div-container {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				align-items: flex-start;
-				justify-items: center;
+				flex-direction: row;
+				justify-content: space-between;
+				gap: em(100px);
+				.div__container-text {
+					flex-direction: row;
+					gap: em(65px);
+					.div__container-description {
+						max-width: em(430px);
+					}
+				}
+				.footer__ul {
+					justify-self: flex-end;
+				}
 			}
 		}
 	}
@@ -144,6 +166,46 @@ const { isLocation } = Astro.props;
 	@media screen and (width >= $breakpoint-desktops) {
 		.footer {
 			padding: em(80px) 0;
+			.footer__div-container {
+				gap: em(200px);
+				.div__container-text {
+					gap: em(140px);
+					.footer__p--description {
+						font-size: rem(18px);
+					}
+					.container-description__address {
+						font-size: rem(18px);
+					}
+				}
+			}
+		}
+
+		.ul__li {
+			.li__a {
+				.a__i {
+					transition: color 0.2s ease-in-out;
+				}
+			}
+		}
+
+		.footer.footer--index {
+			.ul__li {
+				.li__a {
+					.a__i:hover {
+						color: var(--background-secondary);
+					}
+				}
+			}
+		}
+
+		.footer.footer--location {
+			.ul__li {
+				.li__a {
+					.a__i:hover {
+						color: var(--primary-color);
+					}
+				}
+			}
 		}
 	}
 </style>
