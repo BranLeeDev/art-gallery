@@ -1,5 +1,43 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="Art Gallery Location" />
+<Layout title="Art Gallery Location">
+	<main class="main">
+		<picture class="section__picture">
+			<source
+				class="picture__source"
+				srcset="/images/desktop/image-map.png"
+				media="(width >= 90em)"
+			/>
+			<source
+				class="picture__source"
+				srcset="/images/tablet/image-map.png"
+				media="(width >= 48em)"
+			/>
+			<img
+				class="picture__source"
+				src="/images/mobile/image-map@2x.png"
+				alt="Image map about Art Gallery location"
+			/>
+		</picture>
+		<h1 class="section__h1">Our Location</h1>
+		<address class="section__address">
+			<div class="address__div">99 King Street</div>
+			<div class="address__div">
+				<span class="div__span">Newport</span>
+				<span class="div__span">RI 02840</span>
+				<span class="div__span">United States of America</span>
+			</div>
+		</address>
+		<p class="section__p">
+			Our newly opened gallery is located near the Edward King House on 99 King
+			Street, the Modern Art Gallery is free to all visitors and open seven days
+			a week from 8am to 9pm.
+		</p>
+	</main>
+	<Footer isLocation />
+</Layout>
+
+<style lang="scss"></style>

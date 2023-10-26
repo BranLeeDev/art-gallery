@@ -1,5 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="Art Gallery" />
+<Layout title="Art Gallery">
+	<Header />
+	<Footer isLocation={false} />
+</Layout>

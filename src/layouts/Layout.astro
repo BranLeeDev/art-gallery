@@ -3,9 +3,6 @@ interface Props {
 	title: string;
 }
 
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-
 const { title } = Astro.props;
 ---
 
@@ -37,11 +34,7 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<div class="content-layout">
-			<Header />
-			<main class="main">
-				<slot />
-			</main>
-			<Footer />
+			<slot />
 		</div>
 	</body>
 </html>
@@ -50,6 +43,7 @@ const { title } = Astro.props;
 
 	:root {
 		--primary-color: #ffffff;
+		--secondary-color: #151515;
 		--background-primary: #151515;
 		--background-secondary: #d5966c;
 	}
@@ -85,7 +79,12 @@ const { title } = Astro.props;
 		width: 91%;
 	}
 
-	.header {
+	ul {
+		list-style: none;
+	}
+
+	.header,
+	.footer {
 		max-width: em(1440px);
 	}
 
