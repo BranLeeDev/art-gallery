@@ -5,7 +5,12 @@ import Footer from "../components/Footer.astro";
 
 <Layout title="Art Gallery Location">
 	<main class="main">
-		<picture class="section__picture">
+		<a class="main__a" href="/">
+			<span class="a__span a__span--icon"><span class="span__span"></span></span
+			>
+			<span class="a__span a__span--text">Our location</span>
+		</a>
+		<picture class="main__picture">
 			<source
 				class="picture__source"
 				srcset="/src/assets/images/desktop/image-map.png"
@@ -17,27 +22,215 @@ import Footer from "../components/Footer.astro";
 				media="(width >= 48em)"
 			/>
 			<img
-				class="picture__source"
+				class="picture__img"
 				src="/src/assets/images/mobile/image-map@2x.png"
 				alt="Image map about Art Gallery location"
 			/>
 		</picture>
-		<h1 class="section__h1">Our Location</h1>
-		<address class="section__address">
-			<div class="address__div">99 King Street</div>
-			<div class="address__div">
-				<span class="div__span">Newport</span>
-				<span class="div__span">RI 02840</span>
-				<span class="div__span">United States of America</span>
+		<div class="main__div-container">
+			<h1 class="main__title">Our Location</h1>
+			<div class="div__container-adress">
+				<address class="main__address">
+					<div class="address__div address__div--title">99 King Street</div>
+					<div class="address__div address__div--details">
+						<span class="div__span">Newport</span>
+						<span class="div__span">RI 02840</span>
+						<span class="div__span">United States of America</span>
+					</div>
+				</address>
+				<p class="main__description">
+					Our newly opened gallery is located near the Edward King House on 99
+					King Street, the Modern Art Gallery is free to all visitors and open
+					seven days a week from 8am to 9pm.
+				</p>
 			</div>
-		</address>
-		<p class="section__p">
-			Our newly opened gallery is located near the Edward King House on 99 King
-			Street, the Modern Art Gallery is free to all visitors and open seven days
-			a week from 8am to 9pm.
-		</p>
+		</div>
 	</main>
 	<Footer isLocation />
-</Layout>
 
-<style lang="scss"></style>
+	<style lang="scss">
+		@import "../scss/functions.scss";
+		@import "../scss/variables.scss";
+
+		.main {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background-color: var(--background-primary);
+			max-width: em(1440px);
+
+			.main__a {
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: inline-flex;
+				align-items: center;
+				justify-content: space-between;
+				width: 100%;
+				max-width: em(260px);
+				height: em(72px);
+				background-color: var(--background-primary);
+				text-transform: uppercase;
+				color: var(--primary-color);
+
+				.a__span {
+					display: inline-flex;
+					justify-content: center;
+				}
+
+				.a__span--text {
+					width: 113%;
+					font-size: rem(20px);
+					font-weight: 800;
+				}
+
+				.a__span--icon {
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					width: 31%;
+					height: 100%;
+					background-color: var(--background-secondary);
+					.span__span {
+						display: inline-block;
+						width: 100%;
+						height: em(30px);
+						background-image: url("/src/assets/images/icon-arrow-left.svg");
+						background-position: center;
+						background-repeat: no-repeat;
+						background-size: contain;
+					}
+				}
+			}
+
+			.main__picture {
+				width: 100%;
+				max-height: em(550px);
+				.picture__img {
+					width: 100%;
+					max-height: em(550px);
+					object-fit: cover;
+				}
+			}
+
+			.main__div-container {
+				display: flex;
+				flex-direction: column;
+				width: 91%;
+				padding: em(48px) 0 em(56px) 0;
+				.div__container-adress {
+					display: flex;
+					flex-direction: column;
+					gap: em(20px);
+				}
+			}
+
+			.main__title {
+				font-size: clamp(rem(50px), rem(40px) + 2vw, rem(70px));
+				text-transform: uppercase;
+				color: var(--primary-color);
+			}
+
+			.main__address {
+				display: flex;
+				flex-direction: column;
+				gap: em(20px);
+				margin-top: em(48px);
+				.address__div--title {
+					font-size: rem(32px);
+					font-family: "Big Shoulders Display", sans-serif;
+					font-style: normal;
+					text-transform: uppercase;
+					color: var(--background-secondary);
+				}
+
+				.address__div--details {
+					display: flex;
+					flex-direction: column;
+					gap: em(5px);
+					font-size: rem(18px);
+					line-height: 1.56;
+					font-style: normal;
+					color: var(--primary-color);
+				}
+			}
+			.main__description {
+				font-size: rem(18px);
+				line-height: 1.56;
+				font-style: normal;
+				color: var(--primary-color);
+			}
+		}
+		@media screen and (width >= $breakpoint-tablets) {
+			.main {
+				.main__a {
+					left: 5%;
+				}
+
+				.main__picture {
+					max-height: em(600px);
+					.picture__img {
+						max-height: em(600px);
+					}
+				}
+				.main__div-container {
+					flex-direction: row;
+					gap: 15%;
+					padding: em(88px) 0 em(80px) 0;
+					.div__container-adress {
+						.main__address {
+							margin: 0;
+						}
+					}
+				}
+			}
+		}
+
+		@media screen and (width >= $breakpoint-desktops) {
+			.main {
+				position: relative;
+				.main__a {
+					left: em(77px);
+					transition: background-color 0.2s ease-in-out;
+				}
+
+				.main__a:hover {
+					background-color: var(--background-secondary);
+				}
+
+				.a__span--icon {
+					transition: background-color 0.2s ease-in-out;
+				}
+
+				.main__a:hover .a__span--icon {
+					background-color: var(--background-primary);
+				}
+
+				.main__picture {
+					min-height: em(685px);
+					max-height: em(700px);
+					.picture__img {
+						min-height: em(685px);
+						max-height: em(700px);
+					}
+				}
+				.main__div-container {
+					gap: 21%;
+					padding: em(104px) 0 em(128px) 0;
+				}
+				.main__address {
+					.address__div--title {
+						font-size: rem(36px);
+					}
+
+					.address__div--details {
+						font-size: rem(22px);
+					}
+				}
+				.main__description {
+					font-size: rem(22px);
+				}
+			}
+		}
+	</style>
+</Layout>

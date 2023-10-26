@@ -213,12 +213,14 @@
 
 				.section__a:hover {
 					background-color: var(--background-secondary);
-					.a__span--icon {
-						transition: background-color 0.2s ease-in-out;
-					}
-					.a__span--icon {
-						background-color: var(--background-primary);
-					}
+				}
+
+				.a__span--icon {
+					transition: background-color 0.2s ease-in-out;
+				}
+
+				.section__a:hover .a__span--icon {
+					background-color: var(--background-primary);
 				}
 			}
 		}
