@@ -1,0 +1,17 @@
+@use "sass:math";
+
+@function em($value) {
+	@if math.unit($value) == px {
+		@return math.div($value, 16px) + em;
+	} @else {
+		@error "Value must be in pixels (px).";
+	}
+}
+
+@function rem($value) {
+	@if math.unit($value) == px {
+		@return math.div($value, 16px) + rem;
+	} @else {
+		@error "Value must be in pixels (px).";
+	}
+}
