@@ -6,5 +6,232 @@ import Footer from "../components/Footer.astro";
 
 <Layout title="Art Gallery">
 	<Header />
+	<main class="main">
+		<section class="main__section main__section--first">
+			<div class="section__div">
+				<h2 class="section__h2">Your Day at the Gallery</h2>
+				<p class="section__p">
+					Wander through our distinct collections and find new insights about
+					our artists. Dive into the details of their creative process.
+				</p>
+			</div>
+			<picture class="section__picture">
+				<source
+					class="picture__source"
+					srcset="/src/assets/images/desktop/image-grid-1@2x.jpg"
+					media="(width >= 90em)"
+				/>
+				<source
+					class="picture__source"
+					srcset="/src/assets/images/tablet/image-grid-1@2x.jpg"
+					media="(width >= 48em)"
+				/>
+				<img
+					class="picture__img"
+					src="/src/assets/images/mobile/image-grid-1@2x.jpg"
+					alt="Reference image about Art gallery"
+				/>
+			</picture>
+		</section>
+		<section class="main__section main__section--second">
+			<div class="section__div">
+				<h2 class="section__h2">Come & Be Inspired</h2>
+				<p class="section__p">
+					We&rsquo;re excited to welcome you to our gallery and see how our
+					collections influence you.
+				</p>
+			</div>
+			<picture class="section__picture">
+				<source
+					class="picture__source"
+					srcset="/src/assets/images/desktop/image-grid-3@2x.jpg"
+					media="(width >= 90em)"
+				/>
+				<source
+					class="picture__source"
+					srcset="/src/assets/images/tablet/image-grid-3@2x.jpg"
+					media="(width >= 48em)"
+				/>
+				<img
+					class="picture__img"
+					src="/src/assets/images/mobile/image-grid-3@2x.jpg"
+					alt="Referential image of an art frame"
+				/>
+			</picture>
+			<picture class="section__picture">
+				<source
+					class="picture__source"
+					srcset="/src/assets/images/desktop/image-grid-2@2x.jpg"
+					media="(width >= 90em)"
+				/>
+				<source
+					class="picture__source"
+					srcset="/src/assets/images/tablet/image-grid-2@2x.jpg"
+					media="(width >= 48em)"
+				/>
+				<img
+					class="picture__img"
+					src="/src/assets/images/mobile/image-grid-2@2x.jpg"
+					alt="Referential image of an art frame"
+				/>
+			</picture>
+		</section>
+	</main>
 	<Footer isLocation={false} />
 </Layout>
+
+<style lang="scss">
+	@import "../scss/functions.scss";
+	@import "../scss/variables.scss";
+
+	.main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: em(32px);
+		.main__section {
+			display: flex;
+			flex-direction: column-reverse;
+			width: 91%;
+			.section__h2 {
+				text-transform: uppercase;
+				font-size: rem(50px);
+				line-height: 0.9;
+			}
+
+			.section__p {
+				font-size: rem(18px);
+				line-height: 1.52;
+			}
+		}
+
+		.main__section--first {
+			gap: em(25px);
+			.section__div {
+				display: flex;
+				flex-direction: column;
+				gap: em(21px);
+			}
+
+			.section__picture {
+				max-height: em(320px);
+				.picture__img {
+					max-height: em(320px);
+					object-fit: cover;
+				}
+			}
+		}
+
+		.main__section--second {
+			gap: em(16px);
+			.section__div {
+				display: flex;
+				flex-direction: column;
+				gap: em(24px);
+				padding: em(48px) em(24px);
+				background-color: var(--background-primary);
+				color: var(--primary-color);
+			}
+
+			.section__picture:last-of-type {
+				max-height: em(480px);
+				.picture__img {
+					max-height: em(480px);
+					object-fit: cover;
+				}
+			}
+
+			.section__picture:first-of-type {
+				max-height: em(200px);
+				.picture__img {
+					max-height: em(200px);
+					object-fit: cover;
+				}
+			}
+		}
+	}
+
+	@media screen and (width >= $breakpoint-tablets) {
+		.main {
+			.main__section--first {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-template-areas: "text img img";
+				align-items: center;
+				.section__div {
+					grid-area: text;
+					width: 105%;
+				}
+
+				.section__picture {
+					grid-area: img;
+					justify-self: flex-end;
+					width: 87%;
+					max-height: em(400px);
+					.picture__img {
+						max-height: em(400px);
+					}
+				}
+			}
+
+			.main__section--second {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				grid-template-rows: repeat(2, max-content);
+				grid-template-areas:
+					"imgtwo imgone"
+					"imgtwo text";
+
+				.section__div {
+					grid-area: text;
+					padding: em(85px) em(29px);
+				}
+				.section__picture:last-of-type {
+					grid-area: imgtwo;
+					max-height: em(720px);
+					.picture__img {
+						max-height: em(720px);
+					}
+				}
+
+				.section__picture:first-of-type {
+					grid-area: imgone;
+					max-height: em(313px);
+					.picture__img {
+						max-height: em(313px);
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (width >= $breakpoint-desktops) {
+		.main {
+			.section__h2 {
+				font-size: rem(60px);
+			}
+
+			.section__p {
+				font-size: rem(22px);
+			}
+
+			.main__section--second {
+				grid-template-columns: repeat(3, 1fr);
+				grid-template-areas:
+					"imgtwo imgtwo imgone"
+					"imgtwo imgtwo text";
+				.section__div {
+					grid-area: text;
+					padding: em(65px) em(48px);
+				}
+				.section__picture:last-of-type {
+					grid-area: imgtwo;
+				}
+
+				.section__picture:first-of-type {
+					grid-area: imgone;
+				}
+			}
+		}
+	}
+</style>
